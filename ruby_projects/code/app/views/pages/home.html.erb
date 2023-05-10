@@ -1,0 +1,19 @@
+<%if logged_in? %>
+  <%= button_to "logout", logout_path %>
+  <%= link_to "Create Events", new_event_path%>
+  <%else%>
+  <%= link_to "login", login_path %>
+<%end%>
+<div class="container mt-5 text-center">
+	<h2>Calendar</h2>
+	<%= month_calendar(events: @events) do |date, events| %>
+		<%= date.day%>
+	<% events.each do |event|%>
+	<div class="card-header">
+		<div class="card-title">
+			<%= link_to event.title, event%>
+		</div>
+	</div>
+	<%end%>
+	<%end%>
+</div>
